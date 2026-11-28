@@ -21,7 +21,7 @@ Built by [Dark Fire Security](https://darkfiresecurity.com) · Faith · Technolo
 | Area | What it does |
 |---|---|
 | **Batch intake** | Drag-and-drop or multi-select. Each file gets a sequential ID (`EV-0001`…) and a SHA-256 hash at intake. |
-| **Contact sheet** | Instant previews: image thumbnails, hover-to-scrub video, audio waveforms, text snippets, PDF page counts. |
+| **Contact sheet** | Instant previews: image thumbnails, hover-to-scrub video, audio waveforms, text snippets, PDF first-page thumbnails with page counts and an inline PDF viewer. |
 | **Metadata** | Reads JPEG EXIF data (camera make/model, original capture time, GPS with a map link), plus image dimensions and media duration. |
 | **Duplicate detection** | Byte-identical files are flagged automatically (e.g. the same clip arriving from the DVR and from the owner's email). |
 | **Timeline** | Every item is ordered by corrected capture time, with markers for gaps of 10+ minutes and labels showing where each timestamp came from. |
@@ -66,6 +66,7 @@ Try **Load demo set**. It generates synthetic camera stills, a duplicate, an aud
 - Storage is per browser and per device. Clearing site data deletes the case, so **export the manifest and custody log before wiping.**
 - Large files are hashed in memory, so very large videos may be slow on phones.
 - Proprietary DVR formats that the browser can't decode are still hashed and logged, but they won't preview.
+- PDF thumbnails use [pdf.js](https://github.com/mozilla/pdf.js), loaded from the jsDelivr CDN the first time a PDF is ingested. The file is rendered locally and never uploaded; with no network, PDFs are still hashed and logged and fall back to a page-count badge.
 
 ## Roadmap
 
